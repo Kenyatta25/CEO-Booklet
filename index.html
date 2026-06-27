@@ -6,145 +6,101 @@
 <title>The CEO's Booklet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <style>
-/* ── RESET ────────────────────────────── */
+/* CEO Booklet - Responsive for all devices */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px;-webkit-text-size-adjust:100%}
+html{font-size:16px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 html,body,#root{height:100%;background:#FAF8F6}
 body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overscroll-behavior:none}
-input,textarea{outline:none;background:none;border:none;font-family:inherit;font-size:16px;-webkit-appearance:none}
+input,textarea{outline:none;background:none;border:none;font-family:inherit;font-size:16px;-webkit-appearance:none;appearance:none}
 button{cursor:pointer;border:none;background:none;font-family:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 textarea{resize:none}
-select{cursor:pointer;font-family:inherit;font-size:16px;-webkit-appearance:none;-webkit-tap-highlight-color:transparent}
+select{cursor:pointer;font-family:inherit;font-size:16px;-webkit-appearance:none;appearance:none}
 a{text-decoration:none;color:inherit}
-
-/* ── SCROLLBARS ────────────────────────── */
+img,video{max-width:100%;display:block}
 ::-webkit-scrollbar{width:3px;height:3px}
 ::-webkit-scrollbar-thumb{background:rgba(196,133,106,0.25);border-radius:2px}
-
-/* ── ANIMATIONS ────────────────────────── */
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
 .anim{animation:fadeIn 0.28s ease both}
 .slide{animation:slideUp 0.38s ease both}
 
-/* ── LAYOUT ─────────────────────────────── */
-.root-shell{display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden}
-.page-scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-y;overscroll-behavior-y:contain}
+/* App shell */
+.root-shell{display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden;background:#FAF8F6}
+.page-scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-y;overscroll-behavior-y:contain;padding-bottom:max(40px,env(safe-area-inset-bottom))}
 .page-scroll::-webkit-scrollbar{width:2px}
-.page-scroll::-webkit-scrollbar-thumb{background:rgba(196,133,106,0.22);border-radius:2px}
+.page-scroll::-webkit-scrollbar-thumb{background:rgba(196,133,106,0.2);border-radius:2px}
+
+/* Outer screens (cover, setup, login, subscription) */
+.outer-screen{min-height:100vh;min-height:100dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column}
+.outer-panel{width:100%;max-width:520px;margin:0 auto;flex:1;padding:max(40px,env(safe-area-inset-top)) 24px max(60px,env(safe-area-inset-bottom))}
+
+/* Desktop centering */
+@media(min-width:768px){
+  body{background:#1A0F0A}
+  #root{display:flex;justify-content:center;align-items:stretch}
+  .root-shell{max-width:520px;width:100%;box-shadow:0 0 60px rgba(0,0,0,0.5)}
+  .outer-screen{max-width:520px;width:100%;margin:0 auto}
+  .outer-panel{padding-left:36px;padding-right:36px}
+}
+@media(min-width:1024px){
+  .root-shell{max-width:600px}
+  .outer-screen{max-width:600px}
+}
+@media(min-width:1280px){
+  .root-shell{max-width:680px}
+  .outer-screen{max-width:680px}
+}
+@media(min-width:1536px){
+  .root-shell{max-width:760px}
+  .outer-screen{max-width:760px}
+}
+
+/* Small devices */
+@media(max-width:380px){.grid-3{grid-template-columns:1fr 1fr};html{font-size:14.5px}}
+@media(max-width:360px){html{font-size:14px};.outer-panel{padding-left:16px;padding-right:16px}}
+
+/* Helpers */
 .tab-row{display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .tab-row::-webkit-scrollbar{display:none}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-
-/* ── TOUCH TARGETS ──────────────────────── */
-button,a,[role="button"]{min-height:40px;min-width:40px}
-
-/* ── SAFE AREAS ─────────────────────────── */
+button,a,[role="button"]{min-height:44px}
 .page-bottom-safe{padding-bottom:max(44px,calc(28px + env(safe-area-inset-bottom)))}
 .bottom-safe{padding-bottom:max(16px,env(safe-area-inset-bottom))}
-
-/* ── DESKTOP ─────────────────────────────── */
-@media(min-width:768px){
-  #root{display:flex;justify-content:center;background:#1A0F0A}
-  .root-shell{width:100%;max-width:480px;box-shadow:0 0 80px rgba(0,0,0,0.45)}
-}
-@media(min-width:1024px){.root-shell{max-width:600px}}
-@media(min-width:1280px){.root-shell{max-width:680px}}
-
-/* ── RESPONSIVE ─────────────────────────── */
-@media(max-width:380px){.grid-3{grid-template-columns:1fr 1fr}}
-@media(max-width:360px){html{font-size:14px}}
-/* Ensure nothing clips off screen on any device */
-.setup-scroll{min-height:100vh;min-height:100dvh;overflow-y:auto;-webkit-overflow-scrolling:touch}
-/* Desktop: centre panel, dark surround */
-@media(min-width:768px){
-  .setup-scroll{background:#1A0F0A;display:flex;justify-content:center}
-  .setup-inner{width:100%;max-width:520px;background:#FAF8F6;min-height:100vh;min-height:100dvh}
-}
-/* Mobile: full bleed */
-@media(max-width:767px){
-  .setup-inner{width:100%}
-}
-
-/* ── COVER ───────────────────────────────── */
-.cover-h1{font-size:clamp(32px,8vw,52px)}
+.cover-h1{font-size:clamp(28px,7vw,52px);line-height:1.05}
 .cover-sub{font-size:clamp(14px,3.5vw,18px)}
+.card{background:#FFFFFF;border:1px solid #EDE0D8;border-radius:16px;padding:18px;box-shadow:0 2px 8px rgba(100,50,30,0.05)}
 
-/* ──────────────────────────────────────────
-   FORM SYSTEM
-   High-contrast, spacious, legible
-────────────────────────────────────────── */
-.fld-label{
-  display:block;
-  font-family:'Inter',sans-serif;font-size:11px;font-weight:600;
-  letter-spacing:0.09em;text-transform:uppercase;
-  color:#8B6B5A;margin-bottom:8px;
-}
-.fld-input{
-  display:block;width:100%;
-  font-family:'Inter',sans-serif;font-size:15px;font-weight:400;color:#1A0F0A;
-  background:#FFFFFF;border:1.5px solid #E8D8D0;border-radius:12px;
-  padding:13px 16px;
-  transition:border-color 0.15s,box-shadow 0.15s;
-  -webkit-appearance:none;
-}
+/* Form system */
+.fld-label{display:block;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:#8B6B5A;margin-bottom:8px}
+.fld-input{display:block;width:100%;font-family:'Inter',sans-serif;font-size:15px;font-weight:400;color:#1A0F0A;background:#FFFFFF;border:1.5px solid #E8D8D0;border-radius:12px;padding:13px 16px;transition:border-color 0.15s,box-shadow 0.15s;-webkit-appearance:none;appearance:none}
 .fld-input:focus{border-color:#C4856A;box-shadow:0 0 0 3px rgba(196,133,106,0.13)}
 .fld-input::placeholder{color:#C8B4A8;font-style:italic}
-.fld-select{
-  display:block;width:100%;
-  font-family:'Inter',sans-serif;font-size:15px;color:#1A0F0A;
-  background:#FFFFFF;border:1.5px solid #E8D8D0;border-radius:12px;
-  padding:13px 40px 13px 16px;cursor:pointer;
-  -webkit-appearance:none;
-}
+.fld-select{display:block;width:100%;font-family:'Inter',sans-serif;font-size:15px;color:#1A0F0A;background:#FFFFFF;border:1.5px solid #E8D8D0;border-radius:12px;padding:13px 40px 13px 16px;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C8B4A8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
 .fld-select:focus{border-color:#C4856A;box-shadow:0 0 0 3px rgba(196,133,106,0.13)}
-.fld-textarea{
-  display:block;width:100%;resize:none;
-  font-family:'Inter',sans-serif;font-size:14px;color:#1A0F0A;line-height:1.65;
-  background:#FFFFFF;border:1.5px solid #E8D8D0;border-radius:12px;
-  padding:13px 16px;
-  transition:border-color 0.15s,box-shadow 0.15s;
-}
+.fld-textarea{display:block;width:100%;resize:none;font-family:'Inter',sans-serif;font-size:14px;color:#1A0F0A;line-height:1.65;background:#FFFFFF;border:1.5px solid #E8D8D0;border-radius:12px;padding:13px 16px;transition:border-color 0.15s,box-shadow 0.15s}
 .fld-textarea:focus{border-color:#C4856A;box-shadow:0 0 0 3px rgba(196,133,106,0.13)}
 .fld-textarea::placeholder{color:#C8B4A8;font-style:italic}
 .fld-wrap{margin-bottom:20px}
 .fld-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
 .fld-row .fld-wrap{flex:1 1 130px;margin-bottom:0}
 .fld-sel-wrap{position:relative}
-.fld-sel-wrap::after{
-  content:"›";position:absolute;right:14px;top:50%;
-  transform:translateY(-50%) rotate(90deg);
-  pointer-events:none;font-size:16px;color:#C8B4A8;line-height:1;
-}
 .fld-hint{font-family:'Inter',sans-serif;font-size:11px;color:#C8B4A8;margin-top:6px;line-height:1.55}
 .fld-error{font-family:'Inter',sans-serif;font-size:11px;color:#B85C5C;margin-top:6px;font-weight:600}
 .fld-group{background:#FFFFFF;border:1px solid #EDE0D8;border-radius:16px;padding:20px;margin-bottom:20px}
 .fld-group-title{font-family:'DM Serif Display',serif;font-size:16px;color:#1A0F0A;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #EDE0D8}
-
-/* ── SELECT WRAPPER (legacy compat) ─── */
 .sel-wrap{position:relative;width:100%}
-.sel-wrap::after{content:"›";position:absolute;right:13px;top:50%;transform:translateY(-50%) rotate(90deg);pointer-events:none;font-size:15px;color:#C8B4A8}
-.sel-wrap select{padding-right:32px;width:100%}
 
-/* ── CARD ────────────────────────────── */
-.card{
-  background:#FFFFFF;border:1px solid #EDE0D8;border-radius:16px;padding:18px;
-  box-shadow:0 1px 6px rgba(100,50,30,0.05);
-}
+/* Legacy compat */
+.setup-scroll{min-height:100vh;min-height:100dvh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+@media(min-width:768px){.setup-scroll{display:flex;justify-content:center;background:#1A0F0A}.setup-inner{width:100%;max-width:520px;background:#FAF8F6;min-height:100vh}}
+@media(max-width:767px){.setup-inner{width:100%}}
 
-/* ── BARE SELECT ARROW FALLBACK ─────── */
-select.fld-select{
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C8B4A8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;
-  background-position:right 14px center;
-}
-
-/* ── PRINT ───────────────────────────── */
 @media print{.no-print{display:none!important}body{background:#fff}}
 </style>
 </head>
@@ -152,6 +108,47 @@ select.fld-select{
 <div id="root"></div>
 <script>
 (function(){
+/* ================================================
+   EMAILJS CONFIGURATION
+   Free real email delivery — no backend needed.
+
+   SETUP (5 minutes):
+   1. Go to https://emailjs.com and create free account
+   2. Add a service (Gmail, Outlook, etc)
+   3. Create a template — add these variables:
+      {{to_email}}  {{to_name}}  {{code}}
+   4. Replace the three values below with your real IDs
+   ================================================ */
+var EJS_SVC  = "YOUR_SERVICE_ID";
+var EJS_TPL  = "YOUR_TEMPLATE_ID";
+var EJS_KEY  = "YOUR_PUBLIC_KEY";
+var EJS_ON   = (EJS_SVC !== "YOUR_SERVICE_ID");
+
+if(EJS_ON && window.emailjs){
+  try{ window.emailjs.init({publicKey: EJS_KEY}); }catch(ex){}
+}
+
+function sendVerificationEmail(toEmail, code, userName){
+  console.log("[CEO-Booklet] Verification code:", code, "-> ", toEmail);
+  if(EJS_ON && window.emailjs){
+    window.emailjs.send(EJS_SVC, EJS_TPL, {
+      to_email: toEmail,
+      to_name:  userName||"CEO",
+      code:     code,
+      subject:  "Your Verification Code: " + code,
+    }).then(function(){
+      console.log("[CEO-Booklet] Email sent via EmailJS to", toEmail);
+    }).catch(function(err){
+      console.warn("[CEO-Booklet] EmailJS error:", err.text||err);
+    });
+  } else {
+    /* Demo mode — show code in alert on local file */
+    if(window.location.protocol==="file:"||window.location.hostname==="localhost"){
+      setTimeout(function(){alert("DEMO MODE - Code: " + code + ". Configure EmailJS to send to " + toEmail);},400);
+    }
+  }
+}
+
 var React=window.React;
 var ReactDOM=window.ReactDOM;
 var useState=React.useState;
@@ -966,13 +963,10 @@ function CoverPage(props){
   var h=clock.getHours();
   var greet=h<12?"Good Morning":h<17?"Good Afternoon":"Good Evening";
   return e("div",{
-    className:"cover-shell",
+    className:"outer-screen",
     style:{
-      minHeight:"100vh",minHeight:"100dvh",
       background:"linear-gradient(160deg,#140B08 0%,#1E1008 40%,#160C0A 100%)",
-      display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
-      padding:"max(40px,env(safe-area-inset-top)) 24px max(40px,env(safe-area-inset-bottom))",
-      position:"relative",overflowY:"auto",WebkitOverflowScrolling:"touch",width:"100%"
+      alignItems:"center",justifyContent:"center",position:"relative"
     }
   },
     e("div",{style:{position:"absolute",inset:0,background:"radial-gradient(ellipse at 30% 40%,rgba(196,133,106,0.12) 0%,transparent 60%)",pointerEvents:"none"}}),
@@ -1130,39 +1124,41 @@ function SetupPage(props){
 
     /* EMAIL VERIFICATION SCREEN */
   if(verifying){
-    return e("div",{style:{minHeight:"100vh",minHeight:"100dvh",background:"linear-gradient(160deg,#140B08,#1E1008)",display:"flex",alignItems:"center",justifyContent:"center",padding:"40px 24px",overflowY:"auto"}},
-      e("div",{style:{width:"100%",maxWidth:420,textAlign:"center"}},
-        e("div",{style:{fontSize:48,marginBottom:20}},"✉"),
+    return e("div",{className:"outer-screen",style:{background:"linear-gradient(160deg,#140B08,#1E1008)",alignItems:"center",justifyContent:"center"}},
+      e("div",{className:"outer-panel",style:{maxWidth:440,textAlign:"center"}},
+        e("div",{style:{fontSize:52,marginBottom:20}},"✉️"),
         e("div",{style:{fontFamily:F.inter,fontSize:10,color:"rgba(196,133,106,0.7)",letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:10}},"Verify Your Email"),
-        e("div",{style:{fontFamily:F.playfair,fontSize:26,fontWeight:400,color:"rgba(252,245,238,0.94)",marginBottom:10}}),"Check Your Inbox",
-        e("div",{style:{fontFamily:F.cormorant,fontSize:15,fontStyle:"italic",color:"rgba(196,133,106,0.6)",marginBottom:28,lineHeight:1.7}}),
-          "A 6-digit verification code was sent to ",
-          e("span",{style:{color:"rgba(196,133,106,0.9)",fontStyle:"normal"}},email),
-          ". Enter it below to activate your account.",
+        e("div",{style:{fontFamily:F.playfair,fontSize:26,fontWeight:400,color:"rgba(252,245,238,0.94)",marginBottom:12}},"Check Your Inbox"),
+        e("div",{style:{fontFamily:F.cormorant,fontSize:15,fontStyle:"italic",color:"rgba(196,133,106,0.6)",marginBottom:24,lineHeight:1.7}},
+          "A 6-digit code was sent to ",
+          e("span",{style:{color:"rgba(196,133,106,0.9)",fontStyle:"normal",fontWeight:600}},email),
+          ". Enter it below to confirm your account."
+        ),
+        e("div",{style:{background:"rgba(196,133,106,0.1)",border:"1px solid rgba(196,133,106,0.25)",borderRadius:10,padding:"10px 14px",marginBottom:20,fontFamily:F.inter,fontSize:11,color:"rgba(196,133,106,0.8)",lineHeight:1.6}},
+          "In demo mode your code appears in the browser console (F12). Configure EmailJS above to receive codes by email."
+        ),
         e("input",{
-          value:vInput,maxLength:6,inputMode:"numeric",pattern:"[0-9]*",
-          onChange:function(ev){setVInput(ev.target.value.replace(/\D/g,"").slice(0,6));setVErr("");},
+          value:vInput,maxLength:6,inputMode:"numeric",pattern:"[0-9]*",autoComplete:"one-time-code",
+          onChange:function(ev){setVInput(ev.target.value.replace(/[^0-9]/g,"").slice(0,6));setVErr("");},
           onKeyDown:function(ev){if(ev.key==="Enter")verifyCode();},
           placeholder:"000000",
-          style:{display:"block",width:"100%",textAlign:"center",fontFamily:F.mono,fontSize:28,letterSpacing:"0.25em",color:"#1A0F0A",background:"#FFFFFF",border:"2px solid rgba(196,133,106,0.4)",borderRadius:12,padding:"14px 20px",marginBottom:8,outline:"none"}
+          style:{display:"block",width:"100%",textAlign:"center",fontFamily:F.mono,fontSize:32,letterSpacing:"0.3em",color:"#1A0F0A",background:"#FFFFFF",border:"2px solid rgba(196,133,106,0.4)",borderRadius:14,padding:"16px 20px",marginBottom:10,outline:"none",WebkitAppearance:"none",appearance:"none"}
         }),
-        vErr&&e("div",{style:{fontFamily:F.inter,fontSize:11,color:"#B85C5C",marginBottom:12}},vErr),
-        e("div",{style:{fontFamily:F.inter,fontSize:10,color:"rgba(196,133,106,0.4)",marginBottom:20}}),"Code expires in 10 minutes. Check spam if not received.",
-        e("div",{style:{display:"flex",flexDirection:"column",gap:10}},
-          e(Btn,{onClick:verifyCode,style:{width:"100%",background:"linear-gradient(135deg,#C4856A,#B8724A)",color:"#FFFFFF",fontFamily:F.inter,fontSize:14,fontWeight:600,padding:"14px 0",borderRadius:12,letterSpacing:"0.02em"}}),"Verify & Continue →",
+        vErr&&e("div",{style:{fontFamily:F.inter,fontSize:11,color:"#B85C5C",marginBottom:12}},[vErr]),
+        e("div",{style:{fontFamily:F.inter,fontSize:10,color:"rgba(196,133,106,0.35)",marginBottom:24}},"Code expires in 10 minutes. Check spam folder if not received."),
+        e("div",{style:{display:"flex",flexDirection:"column",gap:12}},
+          e(Btn,{onClick:verifyCode,style:{width:"100%",background:"linear-gradient(135deg,#C4856A,#B8724A)",color:"#FFFFFF",fontFamily:F.inter,fontSize:15,fontWeight:600,padding:"15px 0",borderRadius:12,letterSpacing:"0.02em",minHeight:52}},"Verify & Continue"),
           e(Btn,{onClick:function(){
-            var vCode=String(Math.floor(100000+Math.random()*900000));
-            try{localStorage.setItem("ceo_pending_vcode",vCode);}catch(ex){}
-            console.log("[CEO-Booklet] Resent code:",vCode);
-            setVErr("New code sent. Check your inbox.");
-          },style:{fontFamily:F.inter,fontSize:11,color:"rgba(196,133,106,0.5)",letterSpacing:"0.04em"}}),"Resend code"
+            var nc=String(Math.floor(100000+Math.random()*900000));
+            try{localStorage.setItem("ceo_pending_vcode",nc);}catch(ex){}
+            sendVerificationEmail(email,nc,name);
+          },style:{fontFamily:F.inter,fontSize:12,color:"rgba(196,133,106,0.6)",letterSpacing:"0.04em",padding:"8px 0",minHeight:"auto"}},"Resend code")
         )
       )
     );
   }
-
-  return e("div",{className:"setup-scroll",style:{background:C.bg}},
-    e("div",{style:{width:"100%",maxWidth:520,margin:"0 auto",padding:"env(safe-area-inset-top,0) 20px max(60px,env(safe-area-inset-bottom)) 20px",paddingTop:"max(32px,env(safe-area-inset-top))"}},
+return e("div",{className:"outer-screen",style:{background:C.bg}},
+    e("div",{className:"outer-panel"},
       e(Btn,{onClick:props.onBack,style:{fontFamily:F.inter,fontSize:9,fontWeight:700,color:C.orange,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:32}},"← Back"),
       e(Lbl,{c:C.orange},isNew?"Welcome · Registration":"Update Profile"),
       e(Title,{size:28},isNew?"Create Your Account":"Your Profile"),
@@ -1330,12 +1326,8 @@ function LoginPage(props){
   var inputDark={width:"100%",fontFamily:F.mono,fontSize:15,color:"#F0EDE8",background:"none",border:"none",outline:"none",paddingRight:50};
   var inputDarkPlain={width:"100%",fontFamily:F.inter,fontSize:14,color:"#F0EDE8",background:"none",border:"none",outline:"none"};
 
-  return e("div",{style:{
-    minHeight:"100vh",minHeight:"100dvh",background:"linear-gradient(160deg,#0A0806,#0E0E14)",
-    display:"flex",alignItems:"flex-start",justifyContent:"center",
-    padding:"0",overflowY:"auto",WebkitOverflowScrolling:"touch"
-  }},
-    e("div",{className:"anim",style:{width:"100%",maxWidth:420,padding:"48px 24px 60px"}},
+  return e("div",{className:"outer-screen",style:{background:"linear-gradient(160deg,#0A0806,#0E0E14)",alignItems:"center",justifyContent:"center"}},
+    e("div",{className:"outer-panel anim",style:{maxWidth:460}},
       e("div",{style:{textAlign:"center",marginBottom:32}},
         e("div",{style:{fontFamily:F.playfair,fontSize:11,fontWeight:700,color:C.orange,letterSpacing:"0.2em",textTransform:"uppercase",marginBottom:12}},"The CEO's Booklet"),
         e("div",{style:{fontFamily:F.playfair,fontSize:28,fontWeight:900,color:"#F0EDE8",marginBottom:6}},resetMode?"Reset Password":"Welcome Back"),
