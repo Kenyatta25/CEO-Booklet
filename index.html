@@ -295,34 +295,19 @@ button,a,[role="button"]{min-height:44px}
 ================================================================ */
 
 /* ================================================
-   EMAILJS — Email verification for Rosh L'Khol
-   ────────────────────────────────────────────────
-   STATUS: Ready to activate. Follow these steps:
+   EMAILJS CONFIGURATION
+   Free real email delivery — no backend needed.
 
-   STEP 1 — Create EmailJS account (free)
-     → https://www.emailjs.com  (sign up with Gmail or email)
-
-   STEP 2 — Add Email Service
-     → Dashboard → Email Services → Add New Service
-     → Choose Gmail (easiest) or Outlook
-     → Connect your eddahsworkspace@gmail.com account
-     → Copy the SERVICE ID (e.g. service_abc123)
-
-   STEP 3 — Create Email Template
-     → Dashboard → Email Templates → Create New Template
-     → Subject: "Your Rosh L'Khol Verification Code: {{code}}"
-     → Body:    Hello {{to_name}}, your code is: {{code}}
-     → Save. Copy the TEMPLATE ID (e.g. template_xyz789)
-
-   STEP 4 — Get Public Key
-     → Dashboard → Account → General → Public Key
-     → Copy it (e.g. AbCdEfGhIjKlMnOp)
-
-   STEP 5 — Paste your 3 values below, then re-upload to GitHub
+   SETUP (5 minutes):
+   1. Go to https://emailjs.com and create free account
+   2. Add a service (Gmail, Outlook, etc)
+   3. Create a template — add these variables:
+      {{to_email}}  {{to_name}}  {{code}}
+   4. Replace the three values below with your real IDs
    ================================================ */
-var EJS_SVC  = "YOUR_SERVICE_ID";   /* Paste service_xxx here  */
-var EJS_TPL  = "YOUR_TEMPLATE_ID";  /* Paste template_xxx here */
-var EJS_KEY  = "YOUR_PUBLIC_KEY";   /* Paste your public key   */
+var EJS_SVC  = "YOUR_SERVICE_ID";
+var EJS_TPL  = "YOUR_TEMPLATE_ID";
+var EJS_KEY  = "YOUR_PUBLIC_KEY";
 var EJS_ON   = (EJS_SVC !== "YOUR_SERVICE_ID");
 
 if(EJS_ON && window.emailjs){
@@ -673,47 +658,14 @@ var SERVICES=[
   {id:"compliance",    icon:"◆",label:"Compliance & Risk",sub:"Audits · Risk Matrix · BCO Milestones"},
   {id:"legal_vault",   icon:"◧",label:"Legal Vault",sub:"NDAs · Corp Docs · IP · Contracts"},
   {id:"branding",      icon:"◎",label:"Branding & Marketing",sub:"Campaigns · Assets · Brand Strategy"},
-  {id:"estates",       icon:"◈",label:"My Projects",sub:"Personal Estate · Property · Investment Tracker"},
+  {id:"estates",       icon:"◈",label:"Project Estates",sub:"Real Estate · Silver Starling · Investment"},
   {id:"pi_interface",  icon:"◈",label:"PI Interface",sub:"Intelligence · Incidents · Background Checks"},
-  {id:"products_services",icon:"◈",label:"Products & Services",sub:"Catalogue · Pricing · Billing · Orders · Customers"},,
+  {id:"products_services",icon:"◈",label:"Products & Services",sub:"Catalogue · Pricing · Billing · Orders · Customers"},
   {id:"security_center",icon:"🛡",label:"Security Centre",sub:"Internal · External · MFA · Encryption"},
   {id:"auth_matrix",  icon:"⧁",label:"Authorization Matrix",sub:"Request Control · RBAC · CEO Override"},
-  {id:"admin",       icon:"⭡",label:"Admin Console",            sub:"Company setup · Departments · Team roster · Controls"},
-  {id:"delegation",  icon:"◈",label:"Delegation Console",       sub:"Task delegation · Authority levels · Approval workflows"},
-  {id:"meetings", icon:"\uD83D\uDCC5", label:"Meetings & Planner", sub:"Schedule \u00b7 Tasks \u00b7 Priorities"},
-  {id:"Access Control", icon:"\u25C8", label:"Access Control", sub:""},
-  {id:"Brand Assets", icon:"\u25C8", label:"Brand Assets", sub:""},
-  {id:"Budget Review", icon:"\u25C8", label:"Budget Review", sub:""},
-  {id:"Campaign Dashboard", icon:"\u25C8", label:"Campaign Dashboard", sub:""},
-  {id:"Compliance Audit", icon:"\u25C8", label:"Compliance Audit", sub:""},
-  {id:"Content Calendar", icon:"\u25C8", label:"Content Calendar", sub:""},
-  {id:"Contract Registry", icon:"\u25C8", label:"Contract Registry", sub:""},
-  {id:"Deployment Tracker", icon:"\u25C8", label:"Deployment Tracker", sub:""},
-  {id:"Employee Roster", icon:"\u25C8", label:"Employee Roster", sub:""},
-  {id:"Expense Reports", icon:"\u25C8", label:"Expense Reports", sub:""},
-  {id:"Financial KPIs", icon:"\u25C8", label:"Financial Kpis", sub:""},
-  {id:"Growth Metrics", icon:"\u25C8", label:"Growth Metrics", sub:""},
-  {id:"IT Security Audit", icon:"\u25C8", label:"It Security Audit", sub:""},
-  {id:"Inventory Control", icon:"\u25C8", label:"Inventory Control", sub:""},
-  {id:"Invoice Approval", icon:"\u25C8", label:"Invoice Approval", sub:""},
-  {id:"Leave Management", icon:"\u25C8", label:"Leave Management", sub:""},
-  {id:"NDA Tracker", icon:"\u25C8", label:"Nda Tracker", sub:""},
-  {id:"Onboarding Tracker", icon:"\u25C8", label:"Onboarding Tracker", sub:""},
-  {id:"Partnership Pipeline", icon:"\u25C8", label:"Partnership Pipeline", sub:""},
-  {id:"Performance Reviews", icon:"\u25C8", label:"Performance Reviews", sub:""},
-  {id:"Purchase Orders", icon:"\u25C8", label:"Purchase Orders", sub:""},
-  {id:"Regulatory Filings", icon:"\u25C8", label:"Regulatory Filings", sub:""},
-  {id:"Risk Assessment", icon:"\u25C8", label:"Risk Assessment", sub:""},
-  {id:"Shift Scheduling", icon:"\u25C8", label:"Shift Scheduling", sub:""},
-  {id:"Supplier Tracking", icon:"\u25C8", label:"Supplier Tracking", sub:""},
-  {id:"System Status", icon:"\u25C8", label:"System Status", sub:""},
-  {id:"Tech Stack Review", icon:"\u25C8", label:"Tech Stack Review", sub:""},
-  {id:"Training Records", icon:"\u25C8", label:"Training Records", sub:""},
-  {id:"Vendor Registry", icon:"\u25C8", label:"Vendor Registry", sub:""},
-  {id:"Workflow Automation", icon:"\u25C8", label:"Workflow Automation", sub:""},
-  {id:"priorities", icon:"\u25C8", label:"Priorities", sub:""},
-  {id:"schedule", icon:"\u25C8", label:"Schedule", sub:""},
-  {id:"tasks", icon:"\u25C8", label:"Tasks", sub:""},
+  {id:"admin",      icon:"⭡", label:"Admin Console",      sub:"Company setup · Departments · Team · Controls"},
+  {id:"delegation", icon:"◈", label:"Delegation Console",  sub:"Task delegation · Authority · Approvals"},
+  {id:"meetings",   icon:"", label:"Meetings",      sub:"Schedule · Tasks · Priorities"},
 ];
 
 /* ── SERVICE CATEGORY MAP ── */
@@ -732,7 +684,7 @@ var SERVICE_CATEGORIES=[
     icon:"◎",
     desc:"Meetings, calls, messaging, and collaboration",
     accent:"#7B5E8B",
-    ids:["calls","comms","team","commitments","partnerships","planner"],
+    ids:["meetings","calls","comms","team","commitments","partnerships"],
   },
   {
     id:"security",
@@ -954,18 +906,18 @@ var ROLE_CATALOG={
   "CTO":          {services:["dashboard","health","reports","planner","meetings","calls","notes","deptaccess"],tier:"full",badge:"Technology & Systems"},
   "CMO":          {services:["dashboard","health","reports","planner","calls","partnerships","commitments","notes","bidashboard"],tier:"full",badge:"Marketing & Growth"},
   "COO":          {services:["dashboard","health","reports","planner","meetings","calls","deptaccess","commitments","notes","bidashboard"],tier:"full",badge:"Operations"},
-  "CLO":          {services:["reports","priorities","commitments","meetings","calls","notes","partnerships"],tier:"full",badge:"Legal & Compliance"},
-  "CHRO":         {services:["team","commitments","reports","meetings","schedule","tasks","notes"],tier:"full",badge:"People & Culture"},
+  "CLO":          {services:["reports","commitments","meetings","calls","notes","partnerships"],tier:"full",badge:"Legal & Compliance"},
+  "CHRO":         {services:["team","commitments","reports","meetings","notes"],tier:"full",badge:"People & Culture"},
   "Chief of Staff":{services:["dashboard","planner","calls","notes","team"],tier:"full",badge:"Executive Operations"},
-  "Executive Assistant":{services:["schedule","meetings","calls","notes","tasks"],tier:"full",badge:"Administrative Support"},
+  "Executive Assistant":{services:["meetings","calls","notes",],tier:"full",badge:"Administrative Support"},
   "Director":     {services:["reports","planner","notes","team"],tier:"view",badge:"Directorial"},
-  "Manager":      {services:["meetings","tasks","schedule","notes","team","reports"],tier:"view",badge:"Management"},
-  "Team Lead":    {services:["meetings","tasks","schedule","notes","team"],tier:"view",badge:"Team Leadership"},
-  "Analyst":      {services:["reports","bidashboard","notes","tasks","meetings"],tier:"view",badge:"Analytics"},
-  "Engineer":     {services:["tasks","notes","meetings","schedule"],tier:"view",badge:"Engineering"},
-  "Coordinator":  {services:["schedule","meetings","tasks","notes","team"],tier:"view",badge:"Coordination"},
+  "Manager":      {services:["meetings","notes","team","reports"],tier:"view",badge:"Management"},
+  "Team Lead":    {services:["meetings","notes","team"],tier:"view",badge:"Team Leadership"},
+  "Analyst":      {services:["reports","bidashboard","notes","meetings"],tier:"view",badge:"Analytics"},
+  "Engineer":     {services:["notes","meetings",],tier:"view",badge:"Engineering"},
+  "Coordinator":  {services:["meetings","notes","team"],tier:"view",badge:"Coordination"},
   "Consultant":   {services:["reports","notes","planner"],tier:"view",badge:"Advisory"},
-  "Other":        {services:["notes","meetings","tasks","schedule"],tier:"view",badge:"General Access"},
+  "Other":        {services:["notes","meetings",],tier:"view",badge:"General Access"},
 };
 
 function getRoleCatalog(role){
@@ -2205,12 +2157,12 @@ function ServicesHome(props){
               flexShrink:0,transition:"background 0.2s",
             }},
               e("span",{style:{
-                fontFamily:F.inter,fontSize:13,
+                fontFamily:F.inter,fontSize:12,
                 color:expanded?C.white:C.faint,
+                transition:"transform 0.2s",
                 display:"block",
-                lineHeight:1,
-                fontWeight:700,
-              }},expanded?"\u25BE":"\u25B8")
+                transform:expanded?"rotate(180deg)":"none",
+              }},"›")
             )
           ),
 
@@ -2719,32 +2671,6 @@ function ExecutiveHubPage(props){
     "Arriving at "+navState.to+" — destination ahead"
   ]:["Enter start and destination above."];
 
-  /* watchPosition — auto-detect movement and activate navigation */
-  useEffect(function(){
-    var watchId=null;
-    if(navState.to&&navigator.geolocation){
-      watchId=navigator.geolocation.watchPosition(function(pos){
-        var spd=pos.coords.speed;
-        var lat=pos.coords.latitude.toFixed(5);
-        var lng=pos.coords.longitude.toFixed(5);
-        setNavState(function(prev){
-          var isMoving=spd!==null&&spd>0.5; /* >0.5 m/s = movement detected */
-          var shouldActivate=!prev.active&&isMoving&&prev.to;
-          if(shouldActivate){
-            toast.show("done","Navigation","Movement detected — navigation active.");
-            if(voiceActive)speak("Navigation started. Heading to "+prev.to+".");
-          }
-          return Object.assign({},prev,{
-            lat:lat,lng:lng,
-            speed:spd?Math.round(spd*3.6)+"km/h":"—", /* Convert m/s to km/h */
-            active:shouldActivate?true:prev.active,
-          });
-        });
-      },function(){/* GPS unavailable */},{enableHighAccuracy:true,maximumAge:3000,timeout:10000});
-    }
-    return function(){if(watchId!==null)navigator.geolocation.clearWatch(watchId);};
-  },[navState.to,voiceActive]);
-
   function startNav(){
     if(!navState.from||!navState.to){toast.show("followup","Required","Enter start point and destination.");return;}
     var from=encodeURIComponent(navState.from);
@@ -3028,43 +2954,9 @@ function ExecutiveHubPage(props){
       })
     ),
     /* Voice toggle */
-    e("div",{style:{background:C.card,border:"1px solid "+C.line,borderRadius:7,padding:"10px 14px",marginBottom:14}},
-      e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}},
-        e("div",{},e("div",{style:{fontFamily:F.inter,fontSize:10,fontWeight:700,color:C.ink}},"AI Voice Navigation"),e("div",{style:{fontFamily:F.inter,fontSize:9,color:C.faint}},"Select voice gender for audio directions")),
-        voiceActive&&e("div",{style:{width:7,height:7,borderRadius:"50%",background:C.green,animation:"pulse 1.5s ease infinite"}})
-      ),
-      e("div",{style:{display:"flex",gap:6}},
-        [["off","Off"],["female","♀ Female"],["male","♂ Male"]].map(function(opt){
-          var vs=props.store&&props.store.voiceSettings||{};
-          var curG=vs.gender||"off";
-          var isActive=opt[0]==="off"?!voiceActive:(voiceActive&&(curG===opt[0]||(opt[0]==="female"&&(curG==="default"||curG==="female"))));
-          return e(Btn,{key:opt[0],onClick:function(){
-            if(opt[0]==="off"){
-              setVoiceActive(false);
-              window.speechSynthesis&&window.speechSynthesis.cancel();
-              toast.show("followup","Voice","Voice navigation off.");
-            } else {
-              setVoiceActive(true);
-              var voices=window.speechSynthesis?window.speechSynthesis.getVoices():[];
-              var sel=null;
-              if(opt[0]==="female"){
-                sel=voices.find(function(v){return v.lang.startsWith("en")&&/female|zira|samantha|karen|moira|tessa|victoria|allison|ava|fiona/i.test(v.name);});
-                if(!sel)sel=voices.find(function(v){return v.lang.startsWith("en");});
-              } else {
-                sel=voices.find(function(v){return v.lang.startsWith("en")&&/male|david|mark|daniel|alex|fred|thomas|rishi/i.test(v.name);});
-                if(!sel)sel=voices.filter(function(v){return v.lang.startsWith("en");})[1]||voices.find(function(v){return v.lang.startsWith("en");});
-              }
-              var newVS=Object.assign({},vs,{gender:opt[0],voiceURI:sel?sel.voiceURI:null});
-              props.onUpdate&&props.onUpdate({voiceSettings:newVS});
-              var testUtt=new SpeechSynthesisUtterance(opt[0]==="female"?"Female voice selected. I will guide your navigation.":"Male voice selected. Navigation guidance is ready.");
-              if(sel)testUtt.voice=sel;
-              testUtt.volume=parseFloat((vs.volume)||1);
-              window.speechSynthesis&&window.speechSynthesis.speak(testUtt);
-              toast.show("done","Voice",opt[1]+" voice activated.");
-            }
-          },style:{flex:1,fontFamily:F.inter,fontSize:9,fontWeight:isActive?700:400,color:isActive?C.white:C.mid,background:isActive?C.orange:C.bg,border:"1.5px solid "+(isActive?C.orange:C.line),padding:"8px 0",borderRadius:5,textAlign:"center"}},opt[1]);
-        })
-      )
+    e("div",{style:{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:14,background:C.card,border:"1px solid "+C.line,borderRadius:7,padding:"10px 14px"}},
+      e("div",{},e("div",{style:{fontFamily:F.inter,fontSize:10,fontWeight:700,color:C.ink}},"AI Voice Navigation"),e("div",{style:{fontFamily:F.inter,fontSize:9,color:C.faint}},"Real-time audio progress announcements")),
+      e(Btn,{onClick:function(){setVoiceActive(!voiceActive);if(!voiceActive)speak("Voice navigation enabled.");},style:{background:voiceActive?C.orange:C.bg,color:voiceActive?C.white:C.faint,fontFamily:F.inter,fontSize:9,fontWeight:700,padding:"6px 16px",borderRadius:4,border:"1.5px solid "+(voiceActive?C.orange:C.line)}},voiceActive?"On 🔊":"Off")
     ),
     voiceMsg&&e("div",{style:{background:"rgba(66,133,244,0.08)",border:"1px solid rgba(66,133,244,0.25)",borderRadius:6,padding:"8px 12px",marginBottom:12,fontFamily:F.cormorant,fontSize:14,fontStyle:"italic",color:"#4285F4",lineHeight:1.6}},"\uD83D\uDD0A "+voiceMsg),
     /* Current step */
@@ -3084,18 +2976,12 @@ function ExecutiveHubPage(props){
         );
       })
     ),
-    /* Navigation auto-starts when destination is set — no manual button needed */
-    /* Stop and Open in Maps actions */
-    e("div",{style:{display:"flex",gap:8,marginTop:8}},
-      navState.active&&e(Btn,{onClick:stopNav,style:{flex:1,background:C.red,color:C.white,fontFamily:F.inter,fontSize:11,fontWeight:700,padding:"12px 0",borderRadius:6,textAlign:"center"}},"Stop Navigation"),
-      navState.to&&e(Btn,{onClick:function(){
-        var url="https://www.google.com/maps/dir/?api=1&origin="+encodeURIComponent(navState.from||"")+"&destination="+encodeURIComponent(navState.to||"")+"&travelmode="+navState.mode;
-        window.open(url,"_blank");
-      },style:{flex:1,background:"#4285F4",color:C.white,fontFamily:F.inter,fontSize:11,fontWeight:700,padding:"12px 0",borderRadius:6,textAlign:"center"}},"Open Google Maps \uD83D\uDDFA")
-    ),
-    !navState.active&&navState.to&&e("div",{style:{background:C.orangeBg,border:"1px solid rgba(196,133,106,0.2)",borderRadius:8,padding:"10px 14px",marginTop:8,display:"flex",alignItems:"center",gap:8}},
-      e("div",{style:{width:8,height:8,borderRadius:"50%",background:C.orange,animation:"pulse 1.5s ease infinite"}}),
-      e("div",{style:{fontFamily:F.inter,fontSize:10,color:C.mid,lineHeight:1.5}},"Navigation will begin automatically when movement is detected from your device. Tap Open Google Maps for instant turn-by-turn directions.")
+    /* Action buttons */
+    e("div",{style:{display:"flex",gap:8}},
+      !navState.active
+        ?e(Btn,{onClick:startNav,style:{flex:1,background:C.orange,color:C.white,fontFamily:F.inter,fontSize:11,fontWeight:700,padding:"12px 0",borderRadius:6,textAlign:"center",letterSpacing:"0.06em"}},"Start Navigation \u2192")
+        :e(Btn,{onClick:stopNav,style:{flex:1,background:C.red,color:C.white,fontFamily:F.inter,fontSize:11,fontWeight:700,padding:"12px 0",borderRadius:6,textAlign:"center"}},"Stop Navigation"),
+      e(Btn,{onClick:function(){var url="https://maps.google.com/?saddr="+encodeURIComponent(navState.from||"")+"&daddr="+encodeURIComponent(navState.to||"")+"&travelmode="+navState.mode;window.open(url,"_blank");},style:{fontFamily:F.inter,fontSize:10,color:C.lav,border:"1.5px solid rgba(74,82,64,0.4)",padding:"12px 16px",borderRadius:6}},"Open in Maps")
     ),
     toast.el
   );
@@ -4778,12 +4664,10 @@ function PrinciplesPage(props){
     setTimeout(function(){
       var pr=proposed.toLowerCase();
       var strategic=pr.indexOf("long-term")>-1||pr.indexOf("invest")>-1||pr.indexOf("foundation")>-1||pr.indexOf("team")>-1||pr.indexOf("culture")>-1||pr.indexOf("people")>-1;
-      /* Score based on principle keywords — no random values */
-      var keyCount=["invest","long-term","foundation","team","culture","people","clarity","transparency","value","trust"].filter(function(k){return pr.indexOf(k)>-1;}).length;
-      var score=Math.min(95,60+keyCount*5+(strategic?15:0));
+      var score=strategic?Math.floor(Math.random()*15+80):Math.floor(Math.random()*20+55);
       var verdict=score>=80?"Strategically Sound":score>=65?"Conditionally Aligned":"Misaligned";
       var vc=score>=80?C.green:score>=65?C.orange:C.red;
-      var aligned=principles.filter(function(p){return pr.indexOf((p.title||"").toLowerCase().split(" ")[0])>-1;}).slice(0,2).concat(principles.slice(0,Math.max(0,2-principles.filter(function(p){return pr.indexOf((p.title||"").toLowerCase().split(" ")[0])>-1;}).length))).slice(0,2).map(function(p){return p.title;});
+      var aligned=principles.slice(0,Math.floor(Math.random()*2)+2).map(function(p){return p.title;});
       setEvaluation({scenario:scenario,proposed:proposed,score:score,verdict:verdict,vc:vc,aligned:aligned,
         risks:score<80?["Short-term pressure may conflict with Strategic Patience","People impact must be assessed before execution","Ensure communications meet Clarity Over Complexity standard"]:["No critical misalignments identified","Monitor for unintended cultural impact over next quarter"],
         actions:["Document decision rationale in Legal Vault","Brief C-suite within 48 hours","Set 90-day review checkpoint","Ensure team comms follow Clarity principle"],
@@ -5061,7 +4945,7 @@ function NotesPage(props){
 
   useEffect(function(){
     if(recState==="recording"){
-      var t=0;barsRef.current=setInterval(function(){t+=0.3;setBars(function(prev){return prev.map(function(_,i){return 0.2+0.6*Math.abs(Math.sin(t+i*0.7));});});},80);
+      barsRef.current=setInterval(function(){setBars(function(prev){return prev.map(function(){return 0.2+Math.random()*0.8;});});},120);
     } else {
       if(barsRef.current)clearInterval(barsRef.current);
       setBars([0.3,0.5,0.7,0.4,0.6,0.8,0.3,0.5,0.6,0.4]);
@@ -6158,40 +6042,7 @@ function SmartBuildingPanel(props){
   return e("div",{},
     e(Lbl,{c:C.red},"Smart Building Systems"),
     e("div",{style:{fontFamily:F.inter,fontSize:11,color:C.mid,marginBottom:14,lineHeight:1.6}},
-      "Connected to your installed building systems. All access events are logged as official security records. Connect your smart lock hardware using the vendor integration guide below."),
-
-    /* ID verification explanation */
-    e("div",{style:{background:"rgba(155,126,160,0.08)",border:"1px solid rgba(155,126,160,0.2)",borderRadius:8,padding:"10px 14px",marginBottom:12}},
-      e("div",{style:{fontFamily:F.inter,fontSize:9,fontWeight:700,color:C.lav,textTransform:"uppercase",letterSpacing:"0.1em",marginBottom:6}},"Door Lock ID Verification Methods"),
-      e("div",{style:{fontFamily:F.inter,fontSize:10,color:C.mid,lineHeight:1.7}},
-        "Your smart lock verifies identity through: (1) Company ID badge with NFC or RFID chip — tap to unlock. (2) Trusted vendor PIN codes — unique per person, logged per use. (3) Mobile credential via Bluetooth — via the Schlage Home or Yale Access app. (4) Biometric reader — fingerprint or face ID on supported models. (5) One-time codes — generated here and sent to visitors.",
-        e("br",null),
-        e("span",{style:{fontFamily:F.inter,fontSize:9,color:C.faint,marginTop:4,display:"block"}},"To activate: install your chosen smart lock, connect it to your building Wi-Fi or network, and link the vendor app using the API key or webhook provided by the vendor.")
-      )
-    ),
-
-    /* Canada-specific trusted vendors */
-    e("div",{style:{background:C.panel,border:"1px solid "+C.line,borderRadius:10,padding:"12px",marginBottom:12}},
-      e("div",{style:{fontFamily:F.inter,fontSize:9,fontWeight:700,color:C.faint,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:10}},"Trusted Access Control Suppliers — Canada"),
-      e("div",{style:{display:"flex",flexDirection:"column",gap:8}},
-        [
-          {name:"Schlage (Allegion Canada)",desc:"Commercial smart locks — NDE/LE series. NFC, PIN, mobile credential. Integrates with Honeywell and Genetec.",url:"https://www.schlage.com"},
-          {name:"Yale / ASSA ABLOY Canada",desc:"Yale Access Pro — Bluetooth, PIN, RFID card. Canadian distributor: dormakaba Canada.",url:"https://www.yalehome.com"},
-          {name:"Honeywell Pro-Watch",desc:"Enterprise access control with ID badge readers, biometrics, and full audit log. Pan-Canadian installation.",url:"https://www.honeywell.com"},
-          {name:"Genetec Security Centre",desc:"Canada's leading enterprise platform — integrates door access, cameras, and visitor management with ID verification.",url:"https://www.genetec.com"},
-          {name:"Salto Systems Canada",desc:"Cloud access control with NFC and mobile app. Offices across GTA, Vancouver, and Montréal.",url:"https://saltosystems.com"},
-          {name:"dormakaba Canada",desc:"Commercial door hardware, maglocks, and electronic access readers for office and industrial premises.",url:"https://www.dormakaba.com/ca-en"},
-          {name:"Bosch Security Systems Canada",desc:"IP access controllers, card readers, and integrated building security with biometric options.",url:"https://www.boschsecurity.com/ca/en/"},
-        ].map(function(v,i){
-          return e("div",{key:i,style:{borderBottom:i<6?"1px solid "+C.line:"none",paddingBottom:i<6?8:0,marginBottom:i<6?2:0}},
-            e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:2}},
-              e("div",{style:{fontFamily:F.inter,fontSize:10,fontWeight:700,color:C.ink}},v.name),
-              e(Btn,{onClick:function(){window.open(v.url,"_blank");},style:{fontFamily:F.inter,fontSize:8,color:C.lav,border:"1px solid rgba(155,126,160,0.3)",padding:"3px 8px",borderRadius:4,minHeight:"auto",flexShrink:0}},"Visit ↗")
-            ),
-            e("div",{style:{fontFamily:F.inter,fontSize:9,color:C.faint,lineHeight:1.5}},v.desc)
-          );
-        })
-      )
+      "Connected to installed building systems. All actions are logged as official security records."
     ),
 
     /* Door Control */
@@ -11897,7 +11748,7 @@ function BrandingPage(props){
 
   var roadmap=[
     
-    /* Add your real rollout milestones here — they will appear in the Rollout Roadmap tab */
+
     
   ];
 
@@ -12079,297 +11930,14 @@ function BrandingPage(props){
 /* ================================================
    PROJECT ESTATES
    ================================================ */
-
-/* ═══════════════════════════════════════════════════════
-   MY PROJECT — Customisable Personal Estate / Project Page
-   The CEO's personal project — editable name, description,
-   milestones, team, documents, financials, and status.
-═══════════════════════════════════════════════════════ */
-function MyProjectPage(props){
-  var store=props.store||{};
-  var onUpdate=props.onUpdate||function(){};
-  var toast=props.toast||{show:function(){}};
-
-  /* Load from store or start blank */
-  var rProj=useState(function(){
-    return store.myProject||{
-      name:"",
-      type:"",
-      description:"",
-      location:"",
-      status:"Planning",
-      startDate:"",
-      targetDate:"",
-      budget:"",
-      spent:"",
-      phase:"",
-      notes:"",
-    };
-  });
-  var proj=rProj[0];var setProj=rProj[1];
-
-  var rMilestones=useState(store.myProjectMilestones||[]);
-  var milestones=rMilestones[0];var setMilestones=rMilestones[1];
-
-  var rTeam=useState(store.myProjectTeam||[]);
-  var team=rTeam[0];var setTeam=rTeam[1];
-
-  var rDocs=useState(store.myProjectDocs||[]);
-  var docs=rDocs[0];var setDocs=rDocs[1];
-
-  var rEditing=useState(false);var editing=rEditing[0];var setEditing=rEditing[1];
-  var rMForm=useState({milestone:"",date:"",status:"Planned"});var mf=rMForm[0];var setMf=rMForm[1];
-  var rTForm=useState({name:"",role:""});var tf=rTForm[0];var setTf=rTForm[1];
-  var rDForm=useState({name:""});var df=rDForm[0];var setDf=rDForm[1];
-  var rTab=useState("overview");var ptab=rTab[0];var setPtab=rTab[1];
-
-  function saveProject(){
-    onUpdate({myProject:proj});
-    setEditing(false);
-    toast.show("done","Saved","Project details saved.");
-  }
-  function addMilestone(){
-    if(!mf.milestone.trim()){toast.show("followup","Required","Enter milestone name.");return;}
-    var nm=milestones.concat([{id:"m-"+Date.now(),milestone:mf.milestone.trim(),date:mf.date,status:mf.status}]);
-    setMilestones(nm);onUpdate({myProjectMilestones:nm});
-    setMf({milestone:"",date:"",status:"Planned"});
-    toast.show("done","Added","Milestone added.");
-  }
-  function removeMilestone(id){
-    var nm=milestones.filter(function(m){return m.id!==id;});
-    setMilestones(nm);onUpdate({myProjectMilestones:nm});
-  }
-  function addTeam(){
-    if(!tf.name.trim()){toast.show("followup","Required","Enter team member name.");return;}
-    var nt=team.concat([{id:"t-"+Date.now(),name:tf.name.trim(),role:tf.role.trim()}]);
-    setTeam(nt);onUpdate({myProjectTeam:nt});
-    setTf({name:"",role:""});
-    toast.show("done","Added","Team member added.");
-  }
-  function addDoc(){
-    if(!df.name.trim()){toast.show("followup","Required","Enter document name.");return;}
-    var nd=docs.concat([{id:"d-"+Date.now(),name:df.name.trim(),added:new Date().toLocaleDateString()}]);
-    setDocs(nd);onUpdate({myProjectDocs:nd});
-    setDf({name:""});
-    toast.show("done","Added","Document recorded.");
-  }
-
-  var STATUSES=["Planning","In Progress","On Hold","Completed","Cancelled"];
-  var stC={Planning:C.lav,"In Progress":C.orange,"On Hold":C.faint,Completed:C.green,Cancelled:C.red};
-  var mStC={Planned:C.faint,"In Progress":C.orange,Complete:C.green,Delayed:C.red};
-  var PTABS=["overview","milestones","team","documents","financials"];
-  var PTAB_LABELS={overview:"Overview",milestones:"Timeline",team:"Team",documents:"Documents",financials:"Financials"};
-
-  /* Empty state if no project set up yet */
-  if(!proj.name&&!editing){
-    return e("div",{style:{textAlign:"center",padding:"32px 20px"}},
-      e("div",{style:{fontSize:40,marginBottom:12}},"🏗"),
-      e("div",{style:{fontFamily:F.playfair,fontSize:18,fontWeight:700,color:C.ink,marginBottom:8}},"Set Up Your Project"),
-      e("div",{style:{fontFamily:F.inter,fontSize:11,color:C.mid,lineHeight:1.7,marginBottom:20}},"Create a dedicated page for your personal estate, property, or long-term project. Track milestones, team, documents, and financials all in one place."),
-      e(Btn,{onClick:function(){setEditing(true);},style:{background:C.orange,color:C.white,fontFamily:F.inter,fontSize:11,fontWeight:700,padding:"12px 28px",borderRadius:6}},"Create My Project →")
-    );
-  }
-
-  /* Edit form */
-  if(editing){
-    return e("div",{className:"anim"},
-      e(Lbl,{c:C.orange},"Project Setup"),
-      e(Title,{size:20},"Configure Your Project"),
-      e("div",{style:{marginBottom:12}},
-        e("div",{className:"fld-label"},"Project Name"),
-        e("input",{value:proj.name,onChange:function(ev){setProj(Object.assign({},proj,{name:ev.target.value}));},placeholder:"e.g. Silver Starling Housing Estate",className:"fld-input"})
-      ),
-      e("div",{style:{display:"flex",gap:10,marginBottom:12}},
-        e("div",{style:{flex:1}},e("div",{className:"fld-label"},"Project Type"),e("input",{value:proj.type,onChange:function(ev){setProj(Object.assign({},proj,{type:ev.target.value}));},placeholder:"Residential Development, Commercial, etc.",className:"fld-input"})),
-        e("div",{style:{flex:1}},e("div",{className:"fld-label"},"Status"),e("select",{value:proj.status,onChange:function(ev){setProj(Object.assign({},proj,{status:ev.target.value}));},className:"fld-select"},STATUSES.map(function(s){return e("option",{key:s,value:s},s);})))
-      ),
-      e("div",{style:{marginBottom:12}},
-        e("div",{className:"fld-label"},"Location / Address"),
-        e("input",{value:proj.location,onChange:function(ev){setProj(Object.assign({},proj,{location:ev.target.value}));},placeholder:"Full address or coordinates",className:"fld-input"})
-      ),
-      e("div",{style:{marginBottom:12}},
-        e("div",{className:"fld-label"},"Description"),
-        e("textarea",{value:proj.description,onChange:function(ev){setProj(Object.assign({},proj,{description:ev.target.value}));},placeholder:"Describe your project, its purpose, and goals...",rows:3,className:"fld-textarea"})
-      ),
-      e("div",{style:{display:"flex",gap:10,marginBottom:12}},
-        e("div",{style:{flex:1}},e("div",{className:"fld-label"},"Start Date"),e("input",{type:"date",value:proj.startDate,onChange:function(ev){setProj(Object.assign({},proj,{startDate:ev.target.value}));},className:"fld-input"})),
-        e("div",{style:{flex:1}},e("div",{className:"fld-label"},"Target Completion"),e("input",{type:"date",value:proj.targetDate,onChange:function(ev){setProj(Object.assign({},proj,{targetDate:ev.target.value}));},className:"fld-input"}))
-      ),
-      e("div",{style:{display:"flex",gap:10,marginBottom:12}},
-        e("div",{style:{flex:1}},e("div",{className:"fld-label"},"Total Budget"),e("input",{value:proj.budget,onChange:function(ev){setProj(Object.assign({},proj,{budget:ev.target.value}));},placeholder:"$0.00",className:"fld-input"})),
-        e("div",{style:{flex:1}},e("div",{className:"fld-label"},"Current Phase"),e("input",{value:proj.phase,onChange:function(ev){setProj(Object.assign({},proj,{phase:ev.target.value}));},placeholder:"Phase 1, Planning, etc.",className:"fld-input"}))
-      ),
-      e("div",{style:{marginBottom:16}},
-        e("div",{className:"fld-label"},"Executive Notes"),
-        e("textarea",{value:proj.notes,onChange:function(ev){setProj(Object.assign({},proj,{notes:ev.target.value}));},placeholder:"Key decisions, risks, or private notes...",rows:2,className:"fld-textarea"})
-      ),
-      e("div",{style:{display:"flex",gap:8}},
-        e(Btn,{onClick:saveProject,style:{flex:1,background:C.orange,color:C.white,fontFamily:F.inter,fontSize:12,fontWeight:700,padding:"11px 0",borderRadius:6}},"Save Project"),
-        e(Btn,{onClick:function(){setEditing(false);},style:{fontFamily:F.inter,fontSize:11,color:C.mid,border:"1px solid "+C.line,padding:"11px 18px",borderRadius:6}},"Cancel")
-      )
-    );
-  }
-
-  /* Project view */
-  return e("div",{className:"anim"},
-    /* Header */
-    e("div",{style:{background:C.orangeBg,border:"1px solid rgba(196,133,106,0.2)",borderRadius:12,padding:"16px",marginBottom:14}},
-      e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}},
-        e("div",{style:{flex:1}},
-          e("div",{style:{fontFamily:F.inter,fontSize:8,color:C.orange,fontWeight:700,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:4}},proj.type||"Project"),
-          e("div",{style:{fontFamily:F.playfair,fontSize:18,fontWeight:700,color:C.ink,lineHeight:1.2,marginBottom:6}},proj.name),
-          proj.location&&e("div",{style:{fontFamily:F.inter,fontSize:9,color:C.faint,marginBottom:6}},"📍 "+proj.location),
-          e("div",{style:{display:"inline-flex",alignItems:"center",gap:5,background:(stC[proj.status]||C.faint)+"22",border:"1px solid "+(stC[proj.status]||C.faint)+"44",borderRadius:5,padding:"2px 8px"}},
-            e("div",{style:{width:5,height:5,borderRadius:"50%",background:stC[proj.status]||C.faint}}),
-            e("span",{style:{fontFamily:F.inter,fontSize:8,fontWeight:700,color:stC[proj.status]||C.faint}},proj.status)
-          )
-        ),
-        e(Btn,{onClick:function(){setEditing(true);},style:{fontFamily:F.inter,fontSize:9,color:C.orange,border:"1px solid rgba(196,133,106,0.3)",padding:"5px 12px",borderRadius:5,minHeight:"auto"}},"Edit")
-      ),
-      e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginTop:12}},
-        [{l:"Phase",v:proj.phase||"—"},{l:"Start",v:proj.startDate||"—"},{l:"Target",v:proj.targetDate||"—"}].map(function(m,i){
-          return e("div",{key:i,style:{background:"rgba(255,255,255,0.7)",borderRadius:6,padding:"7px 10px",textAlign:"center"}},
-            e("div",{style:{fontFamily:F.inter,fontSize:7,color:C.faint,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:2}},m.l),
-            e("div",{style:{fontFamily:F.inter,fontSize:10,fontWeight:700,color:C.ink}},m.v)
-          );
-        })
-      )
-    ),
-
-    /* Sub-tabs */
-    e("div",{className:"tab-row",style:{gap:4,marginBottom:14}},
-      PTABS.map(function(t){
-        var a=ptab===t;
-        return e(Btn,{key:t,onClick:function(){setPtab(t);},style:{fontFamily:F.inter,fontSize:9,fontWeight:a?700:400,color:a?C.orange:C.faint,borderBottom:"2px solid "+(a?C.orange:"transparent"),padding:"6px 10px",borderRadius:0,minHeight:"auto",whiteSpace:"nowrap"}},PTAB_LABELS[t]);
-      })
-    ),
-
-    /* Overview */
-    ptab==="overview"&&e("div",{className:"anim"},
-      proj.description&&e("div",{style:{fontFamily:F.inter,fontSize:11,color:C.mid,lineHeight:1.7,marginBottom:16}},proj.description),
-      proj.notes&&e("div",{style:{background:C.panel,border:"1px solid "+C.line,borderRadius:8,padding:"12px",marginBottom:12}},
-        e("div",{style:{fontFamily:F.inter,fontSize:8,color:C.orange,fontWeight:700,textTransform:"uppercase",letterSpacing:"0.1em",marginBottom:6}},"Executive Notes"),
-        e("div",{style:{fontFamily:F.cormorant,fontSize:14,fontStyle:"italic",color:C.mid,lineHeight:1.7}},proj.notes)
-      ),
-      !proj.description&&e(EmptyState,{icon:"📋",title:"No overview yet",desc:"Edit this project to add a description and executive notes."})
-    ),
-
-    /* Milestones timeline */
-    ptab==="milestones"&&e("div",{className:"anim"},
-      e("div",{style:{marginBottom:12}},
-        e("div",{className:"fld-label"},"Add Milestone"),
-        e("input",{value:mf.milestone,onChange:function(ev){setMf(Object.assign({},mf,{milestone:ev.target.value}));},placeholder:"Milestone name",className:"fld-input",style:{marginBottom:6}}),
-        e("div",{style:{display:"flex",gap:6}},
-          e("input",{type:"date",value:mf.date,onChange:function(ev){setMf(Object.assign({},mf,{date:ev.target.value}));},className:"fld-input",style:{flex:1}}),
-          e("select",{value:mf.status,onChange:function(ev){setMf(Object.assign({},mf,{status:ev.target.value}));},className:"fld-select",style:{flex:1}},
-            ["Planned","In Progress","Complete","Delayed"].map(function(s){return e("option",{key:s,value:s},s);})
-          ),
-          e(Btn,{onClick:addMilestone,style:{background:C.orange,color:C.white,fontFamily:F.inter,fontSize:9,fontWeight:700,padding:"0 14px",borderRadius:5}},"Add")
-        )
-      ),
-      milestones.length===0&&e(EmptyState,{icon:"🗓",title:"No milestones yet",desc:"Add your project milestones and track progress."}),
-      e("div",{style:{display:"flex",flexDirection:"column",gap:8}},
-        milestones.map(function(m,i){
-          var sc=mStC[m.status]||C.faint;
-          return e("div",{key:m.id,style:{display:"flex",gap:12,alignItems:"flex-start"}},
-            e("div",{style:{display:"flex",flexDirection:"column",alignItems:"center",flexShrink:0}},
-              e("div",{style:{width:20,height:20,borderRadius:"50%",background:m.status==="Complete"?C.green:m.status==="In Progress"?C.orange:C.line,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}},
-                e("span",{style:{fontFamily:F.inter,fontSize:9,color:C.white,fontWeight:700}},m.status==="Complete"?"✓":(i+1))
-              ),
-              i<milestones.length-1&&e("div",{style:{width:2,height:20,background:C.line,marginTop:2}})
-            ),
-            e("div",{style:{flex:1,paddingBottom:6}},
-              m.date&&e("div",{style:{fontFamily:F.inter,fontSize:8,color:C.faint,textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:2}},m.date),
-              e("div",{style:{fontFamily:F.inter,fontSize:11,color:C.ink,marginBottom:3}},m.milestone),
-              e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center"}},
-                e(Pill,{label:m.status,c:sc,bg:sc+"22"}),
-                e(Btn,{onClick:function(){removeMilestone(m.id);},style:{fontFamily:F.inter,fontSize:9,color:C.red,minHeight:"auto",padding:"2px 6px"}},"Remove")
-              )
-            )
-          );
-        })
-      )
-    ),
-
-    /* Team */
-    ptab==="team"&&e("div",{className:"anim"},
-      e("div",{style:{marginBottom:12}},
-        e("div",{className:"fld-label"},"Add Team Member"),
-        e("div",{style:{display:"flex",gap:6}},
-          e("input",{value:tf.name,onChange:function(ev){setTf(Object.assign({},tf,{name:ev.target.value}));},placeholder:"Full name",className:"fld-input",style:{flex:2}}),
-          e("input",{value:tf.role,onChange:function(ev){setTf(Object.assign({},tf,{role:ev.target.value}));},placeholder:"Role / title",className:"fld-input",style:{flex:2}}),
-          e(Btn,{onClick:addTeam,style:{background:C.orange,color:C.white,fontFamily:F.inter,fontSize:9,fontWeight:700,padding:"0 14px",borderRadius:5}},"Add")
-        )
-      ),
-      team.length===0&&e(EmptyState,{icon:"👥",title:"No team members yet",desc:"Add the people involved in this project."}),
-      e("div",{style:{display:"flex",flexDirection:"column",gap:8}},
-        team.map(function(t){
-          return e(Card,{key:t.id},
-            e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center"}},
-              e("div",{},
-                e("div",{style:{fontFamily:F.inter,fontSize:11,fontWeight:700,color:C.ink}},t.name),
-                t.role&&e("div",{style:{fontFamily:F.inter,fontSize:9,color:C.faint}},t.role)
-              ),
-              e(Btn,{onClick:function(){var nt=team.filter(function(x){return x.id!==t.id;});setTeam(nt);onUpdate({myProjectTeam:nt});},style:{fontFamily:F.inter,fontSize:9,color:C.red,minHeight:"auto",padding:"4px 8px"}},"Remove")
-            )
-          );
-        })
-      )
-    ),
-
-    /* Documents */
-    ptab==="documents"&&e("div",{className:"anim"},
-      e("div",{style:{marginBottom:12}},
-        e("div",{className:"fld-label"},"Record Document"),
-        e("div",{style:{display:"flex",gap:6}},
-          e("input",{value:df.name,onChange:function(ev){setDf(Object.assign({},df,{name:ev.target.value}));},placeholder:"Document name or reference",className:"fld-input",style:{flex:1}}),
-          e(Btn,{onClick:addDoc,style:{background:C.orange,color:C.white,fontFamily:F.inter,fontSize:9,fontWeight:700,padding:"0 14px",borderRadius:5}},"Add")
-        )
-      ),
-      docs.length===0&&e(EmptyState,{icon:"📄",title:"No documents recorded",desc:"Add document names or references for this project."}),
-      e("div",{style:{display:"flex",flexDirection:"column",gap:6}},
-        docs.map(function(d){
-          return e(Card,{key:d.id},
-            e("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center"}},
-              e("div",{},
-                e("div",{style:{fontFamily:F.inter,fontSize:11,color:C.ink}},d.name),
-                e("div",{style:{fontFamily:F.inter,fontSize:8,color:C.faint}},"Added "+d.added)
-              ),
-              e(Btn,{onClick:function(){var nd=docs.filter(function(x){return x.id!==d.id;});setDocs(nd);onUpdate({myProjectDocs:nd});},style:{fontFamily:F.inter,fontSize:9,color:C.red,minHeight:"auto",padding:"4px 8px"}},"Remove")
-            )
-          );
-        })
-      )
-    ),
-
-    /* Financials */
-    ptab==="financials"&&e("div",{className:"anim"},
-      e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:14}},
-        [{l:"Total Budget",v:proj.budget||"Not set",c:C.orange},{l:"Spent to Date",v:proj.spent||"—",c:C.red},{l:"Phase",v:proj.phase||"—",c:C.lav},{l:"Target Date",v:proj.targetDate||"—",c:C.green}].map(function(m,i){
-          return e("div",{key:i,style:{background:C.panel,border:"1px solid "+C.line,borderRadius:10,padding:"12px",textAlign:"center"}},
-            e("div",{style:{fontFamily:F.inter,fontSize:7,color:C.faint,textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:4}},m.l),
-            e("div",{style:{fontFamily:F.playfair,fontSize:16,fontWeight:700,color:m.c}},m.v)
-          );
-        })
-      ),
-      e("div",{style:{marginBottom:12}},
-        e("div",{className:"fld-label"},"Update Spent Amount"),
-        e("div",{style:{display:"flex",gap:6}},
-          e("input",{value:proj.spent||"",onChange:function(ev){setProj(Object.assign({},proj,{spent:ev.target.value}));},placeholder:"e.g. $1,200,000",className:"fld-input",style:{flex:1}}),
-          e(Btn,{onClick:saveProject,style:{background:C.orange,color:C.white,fontFamily:F.inter,fontSize:9,fontWeight:700,padding:"0 14px",borderRadius:5}},"Save")
-        )
-      )
-    )
-  );
-}
-
 function ProjectEstatesPage(props){
   var toast=useToast();
   var r1=useState("overview");var tab=r1[0];var setTab=r1[1];
 
   var portfolio=[
-    /* Add your real estate/project entries below */
-    /* They will appear automatically in the portfolio list */
+    {id:2,name:"East Fulfillment Centre — Ottawa",type:"Industrial",size:"42,000 sqft",value:"$8.8M",status:"Leased",phase:"Operational",acquired:"2021-03-01"},
+    {id:3,name:"West Distribution Hub — Vancouver",type:"Industrial",size:"28,600 sqft",value:"$6.2M",status:"Leased",phase:"Operational",acquired:"2022-09-01"},
+    {id:4,name:"Silver Starling Housing Estate",type:"Residential Development",size:"24 acres",value:"$41.0M",status:"Under Development",phase:"Phase 1 Active",acquired:"2024-04-01"},
     
   ];
 
@@ -12385,22 +11953,24 @@ function ProjectEstatesPage(props){
   ];
 
   var investments=[
-    /* Your investment records will appear here once added */
+    {asset:"Silver Starling Housing Estate",invested:"—",valuation:"—",roi:"—",horizon:"2027",risk:"Medium"},
+    {asset:"Head Office — Toronto",invested:"—",valuation:"—",roi:"—",horizon:"Long-term",risk:"Low"},
+    {asset:"Your Brand",invested:"—",valuation:"TBD",roi:"—",horizon:"2026-2027",risk:"High"},
   ];
 
   var pSt={Operational:C.green,"Under Development":C.orange,"Acquisition Planning":C.lav,Occupied:C.green};
   var mSt={Complete:C.green,"In Progress":C.orange,Planned:C.faint};
-  var TABS=["overview","portfolio","my_project","investments"];
-  var tabLabel={overview:"Overview",portfolio:"Portfolio",my_project:"My Project",investments:"Investment Ledger"};
+  var TABS=["overview","portfolio","silver_starling","investments"];
+  var tabLabel={overview:"Overview",portfolio:"Portfolio",silver_starling:"Silver Starling",investments:"Investment Ledger"};
 
   return e(Page,{back:props.onBack},
     e(Lbl,{c:C.green},"Corporate Real Estate"),
-    e(Title,{size:28},"My Projects"),
+    e(Title,{size:28},"Project Estates"),
     e("div",{style:{fontFamily:F.cormorant,fontSize:14,fontStyle:"italic",color:C.faint,marginBottom:14,lineHeight:1.6}},"Real estate portfolios, investment thresholds, site development phases, and acquisition timelines."),
     e(OakLine,{}),
 
     e("div",{style:{display:"flex",gap:0,overflowX:"auto",borderBottom:"2px solid "+C.line,marginBottom:16,WebkitOverflowScrolling:"touch"}},
-      TABS.map(function(t){var active=tab===t;var labels={overview:"Overview",portfolio:"Portfolio",my_project:"My Project",investments:"Investments"};return e(Btn,{key:t,onClick:function(){setTab(t);},style:{padding:"8px 12px",fontFamily:F.inter,fontSize:8,fontWeight:700,letterSpacing:"0.07em",textTransform:"uppercase",color:active?C.green:C.faint,borderBottom:"2px solid "+(active?C.green:"transparent"),marginBottom:"-2px",whiteSpace:"nowrap",flexShrink:0}},labels[t]);})
+      TABS.map(function(t){var active=tab===t;var labels={overview:"Overview",portfolio:"Portfolio",silver_starling:"Silver Starling",investments:"Investments"};return e(Btn,{key:t,onClick:function(){setTab(t);},style:{padding:"8px 12px",fontFamily:F.inter,fontSize:8,fontWeight:700,letterSpacing:"0.07em",textTransform:"uppercase",color:active?C.green:C.faint,borderBottom:"2px solid "+(active?C.green:"transparent"),marginBottom:"-2px",whiteSpace:"nowrap",flexShrink:0}},labels[t]);})
     ),
 
     tab==="overview"&&e("div",{className:"anim"},
@@ -12411,8 +11981,8 @@ function ProjectEstatesPage(props){
       ),
       e("div",{style:{background:"linear-gradient(135deg,rgba(42,80,48,0.08),rgba(42,80,48,0.04))",border:"1.5px solid rgba(42,80,48,0.2)",borderRadius:10,padding:"16px 18px"}},
         e("div",{style:{fontFamily:F.inter,fontSize:8,color:C.green,letterSpacing:"0.16em",textTransform:"uppercase",fontWeight:700,marginBottom:6}},"Flagship Development"),
-        e("div",{style:{fontFamily:F.playfair,fontSize:18,fontWeight:900,color:C.ink,marginBottom:4}},"My Project"),
-        store.myProject&&store.myProject.description&&e("div",{style:{fontFamily:F.cormorant,fontSize:14,color:C.ink,lineHeight:1.7}},store.myProject.description)
+        e("div",{style:{fontFamily:F.playfair,fontSize:18,fontWeight:900,color:C.ink,marginBottom:4}},"Silver Starling Housing Estate"),
+
       )
     ),
 
@@ -12433,7 +12003,35 @@ function ProjectEstatesPage(props){
       )
     ),
 
-    tab==="my_project"&&e(MyProjectPage,{store:props.store,onUpdate:props.onUpdate,toast:toast}),
+    tab==="silver_starling"&&e("div",{className:"anim"},
+      e("div",{style:{background:C.greenBg,border:"1px solid rgba(42,80,48,0.2)",borderRadius:8,padding:"14px 16px",marginBottom:16}},
+        e("div",{style:{fontFamily:F.playfair,fontSize:16,fontWeight:700,color:C.green,marginBottom:4}},"Silver Starling Housing Estate"),
+        e("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginTop:10}},
+          [{l:"Land Size",v:"—"},{l:"Units Planned",v:"—"},{l:"Current Phase",v:"—"},{l:"Target Completion",v:"TBD"}].map(function(m,i){
+            return e("div",{key:i},e("div",{style:{fontFamily:F.inter,fontSize:7,color:C.faint,textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:2}},m.l),e("div",{style:{fontFamily:F.inter,fontSize:11,fontWeight:700,color:C.ink}},m.v));
+          })
+        )
+      ),
+      e(Lbl,{c:C.green},"Development Timeline"),
+      e("div",{style:{display:"flex",flexDirection:"column",gap:8}},
+        silverStarling.map(function(m,i){
+          var sc=mSt[m.status]||C.faint;
+          return e("div",{key:i,style:{display:"flex",gap:12,alignItems:"flex-start"}},
+            e("div",{style:{display:"flex",flexDirection:"column",alignItems:"center",flexShrink:0}},
+              e("div",{style:{width:20,height:20,borderRadius:"50%",background:m.status==="Complete"?C.green:m.status==="In Progress"?C.orange:C.line,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}},
+                m.status==="Complete"?e("div",{style:{fontFamily:F.inter,fontSize:9,color:C.white}},"✓"):e("div",{style:{width:6,height:6,borderRadius:"50%",background:m.status==="In Progress"?C.white:C.faint}})
+              ),
+              i<silverStarling.length-1&&e("div",{style:{width:2,height:20,background:C.line,marginTop:2}})
+            ),
+            e("div",{style:{flex:1,paddingBottom:8}},
+              e("div",{style:{fontFamily:F.inter,fontSize:8,color:C.faint,textTransform:"uppercase",letterSpacing:"0.1em"}},m.phase+" \u00b7 "+m.date),
+              e("div",{style:{fontFamily:F.inter,fontSize:11,color:C.ink,marginTop:2}},m.milestone),
+              e(Pill,{label:m.status,c:sc,bg:sc+"22"})
+            )
+          );
+        })
+      )
+    ),
 
     tab==="investments"&&e("div",{className:"anim"},
       e("div",{style:{display:"flex",flexDirection:"column",gap:10}},
@@ -15272,7 +14870,7 @@ function ProfilePage(props){
                 var selected=null;
                 if(g[0]==="female"){selected=voices.find(function(v){return v.lang.startsWith("en")&&/female|zira|samantha|karen|moira|tessa|victoria|allison|ava/i.test(v.name);});}
                 else if(g[0]==="male"){selected=voices.find(function(v){return v.lang.startsWith("en")&&/male|david|mark|daniel|alex|fred|thomas/i.test(v.name);});}
-                props.onUpdate&&props.onUpdate({voiceSettings:Object.assign({},vs,{gender:g[0],voiceURI:selected?selected.voiceURI:null})});
+                upd({voiceSettings:Object.assign({},vs,{gender:g[0],voiceURI:selected?selected.voiceURI:null})});
                 if(window.speechSynthesis){
                   window.speechSynthesis.cancel();
                   var u2=new SpeechSynthesisUtterance("This is the "+g[1].replace(/[^\w ]/g,"")+" voice.");
@@ -15290,7 +14888,7 @@ function ProfilePage(props){
             [[0.25,"25%"],[0.5,"50%"],[0.75,"75%"],[1.0,"100%"]].map(function(v){
               var vs=store.voiceSettings||{};
               var active=Math.abs((vs.volume||1)-v[0])<0.01;
-              return e(Btn,{key:v[0],onClick:function(){props.onUpdate&&props.onUpdate({voiceSettings:Object.assign({},vs,{volume:v[0]})});},style:{fontFamily:F.inter,fontSize:9,color:active?C.white:C.mid,background:active?C.lav:C.panel,border:"1px solid "+(active?C.lav:C.line),padding:"6px 10px",borderRadius:5}},v[1]);
+              return e(Btn,{key:v[0],onClick:function(){upd({voiceSettings:Object.assign({},vs,{volume:v[0]})});},style:{fontFamily:F.inter,fontSize:9,color:active?C.white:C.mid,background:active?C.lav:C.panel,border:"1px solid "+(active?C.lav:C.line),padding:"6px 10px",borderRadius:5}},v[1]);
             })
           )
         ),
@@ -15301,7 +14899,7 @@ function ProfilePage(props){
             [[0.75,"Slow"],[1.0,"Normal"],[1.25,"Fast"],[1.5,"Faster"]].map(function(v){
               var vs=store.voiceSettings||{};
               var active=Math.abs((vs.rate||1)-v[0])<0.01;
-              return e(Btn,{key:v[0],onClick:function(){props.onUpdate&&props.onUpdate({voiceSettings:Object.assign({},vs,{rate:v[0]})});},style:{fontFamily:F.inter,fontSize:9,color:active?C.white:C.mid,background:active?C.sage:C.panel,border:"1px solid "+(active?C.sage:C.line),padding:"6px 10px",borderRadius:5}},v[1]);
+              return e(Btn,{key:v[0],onClick:function(){upd({voiceSettings:Object.assign({},vs,{rate:v[0]})});},style:{fontFamily:F.inter,fontSize:9,color:active?C.white:C.mid,background:active?C.sage:C.panel,border:"1px solid "+(active?C.sage:C.line),padding:"6px 10px",borderRadius:5}},v[1]);
             })
           )
         ),
@@ -15627,7 +15225,7 @@ function DesktopSidebar(props){
   };
 
   var cats=SERVICE_CATEGORIES.filter(function(cat){
-    if(cat.adminOnly&&!u.isAdmin&&u.tier!=="ceo"&&!(u.role==="CEO"))return false;
+    if(cat.adminOnly&&!u.isAdmin&&u.tier!=="ceo")return false;
     return true;
   });
 
